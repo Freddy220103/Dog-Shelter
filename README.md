@@ -1,4 +1,4 @@
-# TC1033.2
+# TC1033.2 Adopción de perros.
 Proyecto desarrollado durante la clase de TC1033.2. 
 
 El proyecto consitirá en apoyar refugios de perros como el de Huellitas Seguras de Querétaro. Muchos de estos refugios para perros buscan dar en adopción a los perros que se encuentran viviendo ahí. Para facilitar el proceso, mediante sus redes o eventos, ponen en adopción a sus perros. Para que el proceso de adopción sea más efectivo, los refugios guardan la información de cada perro para después enseñarle esta información al público. Sin embargo, muchas veces esta información se llega a perder o no se modifica adecuadamente, siendo una de las posibles consecuencias, inconsistencias en la información guardada de los perros.
