@@ -1,26 +1,57 @@
 # TC1033.2 Adopción de perros.
 Proyecto desarrollado durante la clase de TC1033.2. 
 
+##Contexto
+
 El proyecto consitirá en apoyar refugios de perros como el de Huellitas Seguras de Querétaro. Muchos de estos refugios para perros buscan dar en adopción a los perros que se encuentran viviendo ahí. Para facilitar el proceso, mediante sus redes o eventos, ponen en adopción a sus perros. Para que el proceso de adopción sea más efectivo, los refugios guardan la información de cada perro para después enseñarle esta información al público. Sin embargo, muchas veces esta información se llega a perder o no se modifica adecuadamente, siendo una de las posibles consecuencias, inconsistencias en la información guardada de los perros.
-
-Debido a esto, he creado este programa en C++ para tener un control más eficaz y elaborado. El programa constará de guardar la información de los perros que estén en el refugio, guardando datos (atributos en clases) como color, raza, tamaño, edad, si esta enfermo o no, si esta vacunado o no, si esta esterilizado, sexo, si convive con otros (perros, animales o niños), nivel de energía (calmado, juguetón) y cuando llegó al refugio. 
-
-El usuario que manejaría el proyecto sería alguna persona con conocimientos de programación que este encargado del registro o sea alguien que maneje o lidere el refugio. Debido a que el programa no tiene una interfaz gráfica, el usuario tiene que tener algún conocimiento de programación previo para poder usar el código.
-
-La persona que corra este código, tiene la posibilidad de crear objetos en el main.cpp, poniendo el nombre del perro a este objeto. Al momento que el perro sea registrado (o el objeto sea creado), se le pondrán por default datos (atributos) predefinidos. Sin embargo, sí el usuario busca modificar estos datos, puede ajustar los datos a su conveniencia mediante funciones como métodos set. Entre las funciones de set, podriamos encontrar por ejemplo la función de set_edad(), dónde el usuario editará la edad del perro. El usuario también puede mediante la función de Adoptar() cambiar el estado del perro a adoptado. 
-
-Otros métodos que encontraremos serán los get de la información previamente mencionada. Estos métodos pueden ayudar al usuario a saber la información registrada de los perros mediante esta función.  Entre las funciones de get podemos encontrar get_edad().
-
-En el caso que el programa tenga mucha información acumulada, el usuario podría elegir si eliminar la información de un perro que lleve mucho tiempo sin usarse debido a que el perro fue adoptado (eliminando el objeto creado previamente por el usuario mediante un destructor).
 
 Otro factor importante en estos refugios es la de los voluntarios. En muchos refugios caninos hay muchos colaboradores trabajando, causando una necesidad de guardar la información de quienes están trabajando para usarla en caso de emergencia o para contactar a los voluntarios. Es por esto que el código también tiene integrado una clase de Voluntario para poder registrar todo esto. 
 
 Como muchos voluntarios son nuevos en el lugar, el usuario puede checar que voluntarios tienen experiencia trabajando en el refugio. Una de las utilidades de esto, es que en vez de instruir voluntario por voluntario, puede hacer que los voluntarios con experiencia instruyan a los nuevos colaboradores del lugar. 
 
-El código considera a un voluntario experimentado cuando tiene más de 40 horas de servicio en el refugio cumplidas. Con la función de colab_exp de la clase Voluntario, el código modifica automaticamente el estatus del voluntario a experimentado cuando cumple más de 40 horas de servicio. Sin embargo, el usuario que use el código tiene que registrar las horas cumplidas mediante la función set_horas y llamar a la función de colab_exp.
+Otro problema con los voluntarios es que muchos de estos no cumplen sus tareas. Para esto, el usuario puede guardar en el código, mediante booleanos, si el usuario cumplió sus tareas o no.
 
-Para el proceso de adopción, también se consideran a los adoptantes de los perros. La clase hecha para estos adoptantes tiene atributos básicos como nombre, edad, el nombre del perro que quieran adoptar. No obstante, la información más valiosa es la que se guarda en las variables, proporcionar_alimento, ir_alveterinario, cumple_criterio. Las dos primeras son registradas mediante el usuario al determinar si el adoptante es capaz de proporcionar alimento al perro y llevarlo al veterinario. Las variables son usadas principalmente en la función de cumple_criterios. Si estos dos variables son verdaderas y la edad del adoptante es mayor a 18, la función cambiará el estado de la variable "cumple criterio" a verdadero. Esto hace que al momento en el que el usuario llame a la función de adoptar(), que nos dirá en la consola si el adoptante pueda adoptar al perro. Por el caso contrario, el programa enseñará en la consola que el adoptante no es indicado o no cumple con los requisitos para adoptar.
+Por parte de la adopción, el proceso llega a ser tardado o cansado. Esto se debe a que el refugio tiene que estar totalmente seguro si el adoptante tiene los criterios necesarios para adoptar. La solución que viene en el código es la de checar el estatus del adoptante mediante métodos y decirnos si el adoptante es capaz de adoptar o no.
 
-El programa es bueno para registrar información de objetos, sin embargo, le faltan cosas como herencia para poder ser optimizados. Otro punto a considerar es que el usuario, al no tener una IDE tiene que registrar todo en el código, siendo esto una tarea compleja o frustante para algunas personas. 
+##¿A quién va dirigido?
 
-El programa también no está automatizado y lo único que hará es registrar información mediante el uso de objetos y sus atributos. Además sólo se comunicará mediante la consola.
+El usuario que manejaría el proyecto sería alguna persona con conocimientos de programación que este encargado del registro o sea alguien que maneje o lidere el refugio. Debido a que el programa no tiene una interfaz gráfica, el usuario tiene que tener algún conocimiento de programación previo para poder usar el código.
+
+##Funcionalidad/Solución
+
+Debido a esto, he creado este programa en C++ para tener un control más eficaz y elaborado. Siendo la función principal la  de guardar información del Refugio, sus voluntarios, adoptantes y sus perros. Por ejemplo, en el caso de los perros, se guardan datos (atributos en clases) como  raza, tamaño, edad, si esta enfermo o no, si esta vacunado o no, si esta esterilizado, sexo, si convive con otros (perros, animales o niños), nivel de energía (calmado, juguetón). 
+
+Para accesar a la información registrada de cada clase (Refugio, Perro, Adoptante, Voluntario), se usan los métodos get respectivos de cada atributo escrito para cada clase y sus objetos. Entre las funciones de get podemos encontrar get_edad().
+
+Sin embargo el código tiene la posibilidad de realizar otras funciones mediante el uso de métodos. 
+
+El refugio tiene métodos los cuales tienen la capacidad de decirle al usuario si se necesitan más camas para los perros, si hay aún espacio para albergar más perros y si se alcanza el límite de voluntarios. 
+
+La clase Perro, además de dejarnos guardar información, nos permite crear un adoptante para cuando el usuario comience el proceso de adopción. Siendo este adoptante creado con atributos o datos (nombre, edad) definidos por el usuario mediante constructores y setters. También, al momento de crear al adoptante mediante la composición, se asigna el adoptante al perro en cuestión.
+
+La clase Voluntario, habilita al usuario guardar la información de sus voluntarios como los nombre, los teléfono, las edad y su experiencia. Esto se definido mediante constructores y editado mediante setters. Siendo este último dato usado por el método colab_exp(). Con este método, se puede checar si el voluntario creado, tiene la experiencia para ser considerado como un voluntario experimentado.  El código considera a un voluntario experimentado cuando tiene más de 40 horas de servicio en el refugio cumplidas, siendo la misma función la que cambia este estatus. Sin embargo, el usuario que use el código tiene que registrar las horas cumplidas mediante la función set_horas y llamar a la función de colab_exp.
+
+Para poder asignar tareas, mediante herencia proveniente de la clase Voluntario, se crean tres tipos de voluntario (Encargado, Limpieza y Alimentacion). Esto es realizado para poder monitorear que las tareas del refugio si se cumplan. El encargado o usuario puede modificar el estatus del cumplimiento de estas tareas mediante setters.
+
+En el caso que el programa tenga mucha información acumulada, la clase perro le permite al usuario poder elegir si eliminar la información de los perros que ya no necesite (eliminando el objeto creado previamente por el usuario mediante un destructor).
+
+A fin de agilizar el proceso de adopción, el código checa el estatus del adoptante mediante métodos y le dice al usuario si el adoptante es capaz de adoptar o no.
+
+##¿Cómo funciona?
+
+La persona que corra este código, tiene la posibilidad de crear objetos en el main.cpp, siendo el primer objeto creado el refugio mismo. Al momento que este refugio sea creado, se le asignaran valores a sus atributos mediante el uso de un constructor. En el código, el objeto de clase Refugio es nombrado "huellas_seguras".
+
+Posteriormente se crea un voluntario (gabriel) con el mismo método anteriormente mencionado. Se llaman las funciones de set_horas() y colab_exp() para checar si el usuario ya es un voluntario experimentado. También se llama a la función anadir_voluntario(), que agrega una unidad al contador (numero_voluntarios)  que tiene el objeto huellas_seguras para poder usarlo en staff_necesario(). 
+
+Para crear el perro (rodo), se crea un adoptante dummy o de prueba. Este dummy es definido junto a todos los atributos pertenecientes al constructor perro. Más adelante en el código, este dummy es remplazado mediante el método crear_adoptante(), que cambia al objeto dummy por el adoptante creado por el método crear_adoptante(). También se llama a la función anadir_perro), que agrega una unidad al contador (numero_perros) que tiene el objeto huellas_seguras para poder usarlo posteriormente en su método perros_admitidos().
+
+Con lo anterior, el código llama a el método de Perro "adoptar()", con el propósito de realizar el proceso de adopción. Al final, se tiene que desplegar en la consola si se puede adoptar al perro o no (esto es determinado por métodos y atributos de la clase Adoptante, los cuales podemos acceder debido a la composición que tiene Adoptante con la clase Perro).
+
+Seguidamente del último proceso, el código cambia la información del perro creado (rodo), mediante el uso de setters y despliega toda su información mediante el uso de getters. 
+
+Por último el código despliega la información obtenida mediante los métodos del objeto huellas_seguras, si faltan camas, hay espacio para perros y si hay espacio para que más voluntarios se anoten.
+
+
+##¿Para qué es bueno el programa? ¿Áreas de oportunidad?
+
+El programa es bueno para registrar información de objetos. Sin embargo, un área de oportunidad o a considerar es que el usuario, al no tener una IDE, tiene que registrar todo en el código y la consola, siendo esto una tarea compleja o frustante para algunas personas.  Además sólo se comunicará mediante la consola.
