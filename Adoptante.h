@@ -1,3 +1,6 @@
+//
+// Creado por Alfredo Gómez Mendoza A01704189 el 10/11/2021.
+//
 #include<string>
 using namespace std;
 
@@ -6,31 +9,33 @@ private:
     string nombre;
     int edad;
     string perro_adoptado; //nombre del perro que será adoptado
-    int proporcionar_alimento; //variable dónde se guarda si el adoptante puede proporcionarle alimento al perro
-    int ir_alveterinario; //variable dónde se guarda si el adoptante puede llevar al veterinario al perro en cuestión
-    int cumple_criterio; //Variable que determina si el adoptante es capaz de tener al perro, se pone 1 para true, 0 para false
+
 
 public:
-    Adoptante(): nombre("Adoptante"),edad(20), perro_adoptado("Perro adoptado"), proporcionar_alimento(0), ir_alveterinario(0),cumple_criterio(0){};
+    bool proporcionar_alimento; //variable dónde se guarda si el adoptante puede proporcionarle alimento al perro
+    bool ir_alveterinario; //variable dónde se guarda si el adoptante puede llevar al veterinario al perro en cuestión
+    bool cumple_criterio; //Variable que determina si el adoptante es capaz de tener al perro, se pone 1 para true, 0 para false
+    Adoptante(): nombre("Adoptante"),edad(20), perro_adoptado("Perro adoptado"), proporcionar_alimento(false), ir_alveterinario(false),cumple_criterio(false){};
     //constructores
-    Adoptante(string nom, int eda, string perro, int alimento, int vet):
+    Adoptante(string nom, int eda, string perro, bool alimento, bool vet):
             nombre(nom), edad(eda), perro_adoptado(perro), proporcionar_alimento(alimento), ir_alveterinario(vet){};
 
     //getters de adoptante
     string get_nombre();
     int get_edad();
     string get_perro();
-    int get_alimento();
-    int get_iralvet();
-    int get_cumple();
+    bool get_alimento();
+    bool get_iralvet();
+    bool get_cumple();
 
     //setters de adoptante
     void set_nombre(string);
     void set_edad(int);
     void set_perro(string);
-    void set_alimento(int);
-    void set_veterinario(int);
+    void set_alimento(bool);
+    void set_veterinario(bool);
     void cumple_criterios();
+
     //Método que checa si se puede adoptar
     string adoptar();
 };
@@ -46,13 +51,13 @@ int Adoptante::get_edad(){
 string Adoptante::get_perro(){
     return perro_adoptado;
 }
-int Adoptante::get_alimento(){
+bool Adoptante::get_alimento(){
     return proporcionar_alimento;
 }
-int Adoptante::get_iralvet(){
+bool Adoptante::get_iralvet(){
     return ir_alveterinario;
 }
-int Adoptante::get_cumple() {
+bool Adoptante::get_cumple() {
     return cumple_criterio;
 
 }
@@ -69,32 +74,33 @@ void Adoptante::set_perro(string perro){
     perro_adoptado=perro;
 }
 
-void Adoptante::set_alimento(int alimento) {
+void Adoptante::set_alimento(bool alimento) {
     proporcionar_alimento=alimento;
 }
 
-void Adoptante::set_veterinario(int vet) {
+void Adoptante::set_veterinario(bool vet) {
     ir_alveterinario=vet;
 }
 void Adoptante::cumple_criterios( ){
-    if (proporcionar_alimento&&ir_alveterinario==1){
-        cumple_criterio=1;
+    if (proporcionar_alimento&&ir_alveterinario==true){
+        cumple_criterio=true;
     }
     else{
-        cumple_criterio=0;
+        cumple_criterio=false;
     }
 }
 string Adoptante::adoptar(){
+
     string adopcion;
     adopcion="";
-    if (cumple_criterio==0){
+    if (cumple_criterio==false){
         adopcion="La adopción no puede realizarse debido a que no se cumplen los requisitos";
     }
     else if (edad<18){
         adopcion="La adopción no puede realizarse debido a que el adoptante es menor de edad";
     }
     else {
-        adopcion = "La adopcion cumple los requisitos";
+        adopcion = "El perro ha sido adoptado con éxito";
     }
     return adopcion;
 }
