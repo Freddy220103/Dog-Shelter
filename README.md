@@ -1,7 +1,7 @@
 # TC1033.2 Adopción de perros.
 Proyecto desarrollado durante la clase de TC1033.2. 
 
-##Contexto
+## Contexto
 
 El proyecto consitirá en apoyar refugios de perros como el de Huellitas Seguras de Querétaro. Muchos de estos refugios para perros buscan dar en adopción a los perros que se encuentran viviendo ahí. Para facilitar el proceso, mediante sus redes o eventos, ponen en adopción a sus perros. Para que el proceso de adopción sea más efectivo, los refugios guardan la información de cada perro para después enseñarle esta información al público. Sin embargo, muchas veces esta información se llega a perder o no se modifica adecuadamente, siendo una de las posibles consecuencias, inconsistencias en la información guardada de los perros.
 
@@ -13,11 +13,11 @@ Otro problema con los voluntarios es que muchos de estos no cumplen sus tareas. 
 
 Por parte de la adopción, el proceso llega a ser tardado o cansado. Esto se debe a que el refugio tiene que estar totalmente seguro si el adoptante tiene los criterios necesarios para adoptar. La solución que viene en el código es la de checar el estatus del adoptante mediante métodos y decirnos si el adoptante es capaz de adoptar o no.
 
-##¿A quién va dirigido?
+## ¿A quién va dirigido?
 
 El usuario que manejaría el proyecto sería alguna persona con conocimientos de programación que este encargado del registro o sea alguien que maneje o lidere el refugio. Debido a que el programa no tiene una interfaz gráfica, el usuario tiene que tener algún conocimiento de programación previo para poder usar el código.
 
-##Funcionalidad/Solución
+## Funcionalidad
 
 Debido a esto, he creado este programa en C++ para tener un control más eficaz y elaborado. Siendo la función principal la  de guardar información del Refugio, sus voluntarios, adoptantes y sus perros. Por ejemplo, en el caso de los perros, se guardan datos (atributos en clases) como  raza, tamaño, edad, si esta enfermo o no, si esta vacunado o no, si esta esterilizado, sexo, si convive con otros (perros, animales o niños), nivel de energía (calmado, juguetón). 
 
@@ -37,7 +37,7 @@ En el caso que el programa tenga mucha información acumulada, la clase perro le
 
 A fin de agilizar el proceso de adopción, el código checa el estatus del adoptante mediante métodos y le dice al usuario si el adoptante es capaz de adoptar o no.
 
-##¿Cómo funciona?
+## ¿Cómo funciona?
 
 La persona que corra este código, tiene la posibilidad de crear objetos en el main.cpp, siendo el primer objeto creado el refugio mismo. Al momento que este refugio sea creado, se le asignaran valores a sus atributos mediante el uso de un constructor. En el código, el objeto de clase Refugio es nombrado "huellas_seguras".
 
@@ -52,6 +52,6 @@ Seguidamente del último proceso, el código cambia la información del perro cr
 Por último el código despliega la información obtenida mediante los métodos del objeto huellas_seguras, si faltan camas, hay espacio para perros y si hay espacio para que más voluntarios se anoten.
 
 
-##¿Para qué es bueno el programa? ¿Áreas de oportunidad?
+## ¿Para qué es bueno el programa? ¿Áreas de oportunidad?
 
 El programa es bueno para registrar información de objetos. Sin embargo, un área de oportunidad o a considerar es que el usuario, al no tener una IDE, tiene que registrar todo en el código y la consola, siendo esto una tarea compleja o frustante para algunas personas.  Además sólo se comunicará mediante la consola.
