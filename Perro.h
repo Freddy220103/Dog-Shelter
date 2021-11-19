@@ -1,6 +1,7 @@
 //
 // Creado por Alfredo Gómez Mendoza el 10 de noviembre de 2021
-
+#include "Adoptante.h"//importamos para la composición
+#include "Refugio.h"
 #include<string>
 using namespace std;
 
@@ -16,18 +17,22 @@ private:
     string convivencia; //con quienes convive
     string energia; //cuanta energía tiene (calmado, juguetón)
     int estatus; //0 si no está adoptado, 1 si lo está.
+    Refugio refugi; //refugio al cual el perro pertenece (Se crea afuera de Perro)
+    Adoptante adoptant;//adoptante al cual el perro será asignado (es creado mediante un método de Perro)
+
 
 public:
     ~Perro(){
         cout<<"La info del perro ha sido destruida"<<endl;
     }
+    //constructor
 
     Perro(): raza("desconocido"),edad(0),tam(0.0),sexo(0),energia("Calmado"),
-    convivencia("Sólo con perros"),enfermo(0), vacunado(0), estatus(0){}; //constructor
+             convivencia("Sólo con perros"),enfermo(0), vacunado(0), estatus(0){};
 
-    Perro(string raz, int ed, float ta, int sex, string ener, string conv, int enf, int vac, int ester, int est):
-    raza(raz), edad(ed), tam(ta), sexo(sex), energia(ener), convivencia(conv), enfermo(enf), esterilizado(ester), vacunado (vac)
-    , estatus(est){};
+    Perro(string raz, int ed, float ta, int sex, string ener, string conv, int enf, int vac, int ester, int est,
+          Adoptante adop, Refugio ref):raza(raz), edad(ed), tam(ta), sexo(sex), energia(ener), convivencia(conv), enfermo(enf),
+      esterilizado(ester), vacunado (vac),estatus(est),adoptant(adop),refugi(ref){};
 
     //getters de clase Perro
     string get_raza();
@@ -41,6 +46,7 @@ public:
     string get_esterilizado();
     string get_estatus();
 
+
     //setters para objetos con clase perro
     void set_raza(string);
     void set_edad(int);
@@ -51,7 +57,14 @@ public:
     void set_enfermo(int);
     void set_vacunado(int);
     void set_esterilizado(int);
-    void adoptado(int);
+    void set_adoptante(Adoptante);//se asigna un adoptante al perro
+    void set_estatus(int); //aquí terminan los setters y getters
+
+    //inician funciones únicas
+    void anadir_perro();//añade un voluntario al contador del refugio de voluntarios
+    void crear_adoptante();//crea un adoptante al perro
+    void adoptar();//le asigna un adoptante al perro
+
 };
 
 string Perro::get_raza(){
@@ -163,6 +176,41 @@ void Perro::set_vacunado(int vac){
 void Perro::set_esterilizado(int ester){
     esterilizado=ester;
 }
-void Perro::adoptado(int est){
+void Perro::set_estatus(int est){
     estatus=est;
+}
+void Perro::anadir_perro(){
+    refugi.set_num_perros();
+//ejemplo de agregación
+}
+
+void Perro::set_adoptante(Adoptante adop){
+    adoptant=adop;
+}
+//uso de composición
+void Perro::crear_adoptante(){
+    string nom, perro;
+    int edad;
+    cout<<"Introduce el nombre del adoptante"<<endl;
+    cin>>nom;
+    cout<<"Introduce la edad del adoptante"<<endl;
+    cin>>edad;
+    cout<<"Introduce el nombre del perro"<<endl;
+    cin>>perro;
+    Adoptante a1(nom, edad, perro,false,false);
+    adoptant=a1;
+    cout<<"El adoptante fue creado con éxito"<<endl;
+}
+//se usan métodos de adoptante
+void Perro::adoptar(){
+    bool alimento,vet;
+    cout<<adoptant.get_nombre()<<" de "<<adoptant.get_edad()<<" quiere adoptar a "<<adoptant.get_perro()<<endl;
+    cout<<"¿El dueño puede brindarle alimento suficiente? (Verdadero=1/Falso=0)"<<endl;
+    cin>>alimento;
+    cout<<"¿El dueño puede llevarlo al veterinario? (Verdadero=1/Falso=0)"<<endl;
+    cin>>vet;
+    adoptant.set_alimento(alimento);
+    adoptant.set_veterinario(vet);
+    adoptant.cumple_criterios();
+    cout<<adoptant.adoptar()<<endl;
 }
