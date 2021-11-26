@@ -14,9 +14,7 @@ public:
                                             refugio) {};
 
     string pagar_deudas();
-/*Encargado (string nombre, int edad, int colaborador_experimentado,int horas_cumplidas, int telefono):
-            Voluntario(nom, name, age, experience, position){};
-    Voluntario(): nombre("Voluntario"),edad(16), colaborador_experimentado(0), horas_cumplidas(0), telefono(442324435){};*/
+
 };
 
     string Encargado::pagar_deudas() {
