@@ -1,23 +1,30 @@
 //
 // Creado por Alfredo Gómez Mendoza A01704189 el 10/11/2021.
 //
+#ifndef VOLUNTARIO_H_
+#define VOLUNTARIO_H_
 #include<string>
-#include "Perro.h"//importamos para la agregación
+#include "Refugio.h"
+
 using namespace std;
 
 class Voluntario{
-private:
+    protected:
     string nombre; //nombre del voluntario
     int edad; //edad del voluntario
     int colaborador_experimentado; //¿Tiene experiencia como voluntario? Se pone que sí (1) sólo si ya cumplio más de 40 horas de servicio, sino se pone 0
     int horas_cumplidas;
     int telefono;
-    Refugio refugi;
 public:
-    Voluntario(): nombre("Voluntario"),edad(16), colaborador_experimentado(0), horas_cumplidas(0), telefono(442324435){};
+    Refugio refugi;
+    Voluntario(): nombre("Voluntario"),edad(16), colaborador_experimentado(0), horas_cumplidas(0), telefono(442324435),refugi(refugi){
+        anadir_voluntario(refugi);
+    };
 
     Voluntario(string nom, int eda, int exp, int horas, int tel, Refugio ref):nombre(nom),edad(eda),colaborador_experimentado(exp),
-    horas_cumplidas(horas),telefono(tel), refugi(ref){};
+    horas_cumplidas(horas),telefono(tel),refugi(ref){
+        anadir_voluntario(ref);
+    };
 
 
     string get_nombre();
@@ -31,7 +38,7 @@ public:
     //Función hecha para checar si el voluntario tiene experiencia trabajando previamente o no
     string colab_exp();
     //añade un voluntario al contador del refugio de voluntarios
-    void anadir_voluntario();
+    void anadir_voluntario(Refugio);
 };
 
 string Voluntario::get_nombre(){
@@ -75,7 +82,9 @@ string Voluntario::colab_exp(){
     return text1;
 }
 
-void Voluntario::anadir_voluntario() {
+void Voluntario::anadir_voluntario(Refugio ref) {
+    refugi=ref;
     refugi.set_num_volunt();
     //ejemplo de agregación
 }
+#endif
