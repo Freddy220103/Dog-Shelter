@@ -1,6 +1,8 @@
 //
 // Creado por Alfredo Gómez Mendoza A01704189 el 10/11/2021.
 //
+#ifndef ADOPTANTE_H_
+#define ADOPTANTE_H_
 #include<string>
 using namespace std;
 
@@ -104,3 +106,4 @@ string Adoptante::adoptar(){
     }
     return adopcion;
 }
+#endif
