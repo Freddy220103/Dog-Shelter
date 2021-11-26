@@ -43,13 +43,15 @@ La persona que corra este código, tiene la posibilidad de crear objetos en el m
 
 Posteriormente se crea un voluntario (gabriel) con el mismo método anteriormente mencionado. Se llaman las funciones de set_horas() y colab_exp() para checar si el usuario ya es un voluntario experimentado. También se llama a la función anadir_voluntario(), que agrega una unidad al contador (numero_voluntarios)  que tiene el objeto huellas_seguras para poder usarlo en staff_necesario(). 
 
+Para poder tener diferentes tipos de voluntarios, mediante la herencia se crean nuevas clases que designan nuevos atributos y tareas a los objetos heredados de la clase Voluntario(). En el código podemos ver tres tipos (Alimentacion, Limpieza y Encargado).
+
 Para crear el perro (rodo), se crea un adoptante dummy o de prueba. Este dummy es definido junto a todos los atributos pertenecientes al constructor perro. Más adelante en el código, este dummy es remplazado mediante el método crear_adoptante(), que cambia al objeto dummy por el adoptante creado por el método crear_adoptante(). También se llama a la función anadir_perro), que agrega una unidad al contador (numero_perros) que tiene el objeto huellas_seguras para poder usarlo posteriormente en su método perros_admitidos().
 
-Con lo anterior, el código llama a el método de Perro "adoptar()", con el propósito de realizar el proceso de adopción. Al final, se tiene que desplegar en la consola si se puede adoptar al perro o no (esto es determinado por métodos y atributos de la clase Adoptante, los cuales podemos acceder debido a la composición que tiene Adoptante con la clase Perro).
+Con lo anterior, el código llama a el método de Perro "adoptar()", con el propósito de realizar el proceso de adopción. Al final, se tiene que desplegar en la consola si se puede adoptar al perro o no (esto es determinado por métodos y atributos de la clase Adoptante, los cuales podemos acceder debido a la composición que tiene Adoptante con la clase Perro). En el caso que se adopte el contador del refugio disminuirá.
 
 Seguidamente del último proceso, el código cambia la información del perro creado (rodo), mediante el uso de setters y despliega toda su información mediante el uso de getters. 
 
-Por último el código despliega la información obtenida mediante los métodos del objeto huellas_seguras, si faltan camas, hay espacio para perros y si hay espacio para que más voluntarios se anoten.
+Por último el código despliega la información obtenida mediante el método de status() del objeto huellas_seguras, si faltan camas, hay espacio para perros y si hay espacio para que más voluntarios se anoten.
 
 
 ## ¿Para qué es bueno el programa? ¿Áreas de oportunidad?
