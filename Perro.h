@@ -1,5 +1,7 @@
 //
 // Creado por Alfredo Gómez Mendoza el 10 de noviembre de 2021
+#ifndef PERRO_H_
+#define PERRO_H_
 #include "Adoptante.h"//importamos para la composición
 #include "Refugio.h"
 #include<string>
@@ -17,22 +19,30 @@ private:
     string convivencia; //con quienes convive
     string energia; //cuanta energía tiene (calmado, juguetón)
     int estatus; //0 si no está adoptado, 1 si lo está.
-    Refugio refugi; //refugio al cual el perro pertenece (Se crea afuera de Perro)
     Adoptante adoptant;//adoptante al cual el perro será asignado (es creado mediante un método de Perro)
 
 
 public:
+    //destructor
     ~Perro(){
-        cout<<"La info del perro ha sido destruida"<<endl;
     }
-    //constructor
+
+
+    Refugio refugi; //refugio al cual el perro pertenece (Se crea afuera de Perro)
 
     Perro(): raza("desconocido"),edad(0),tam(0.0),sexo(0),energia("Calmado"),
-             convivencia("Sólo con perros"),enfermo(0), vacunado(0), estatus(0){};
+             convivencia("Sólo con perros"),enfermo(0), vacunado(0), estatus(0){
+        anadir_perro(refugi);
+    };
 
     Perro(string raz, int ed, float ta, int sex, string ener, string conv, int enf, int vac, int ester, int est,
           Adoptante adop, Refugio ref):raza(raz), edad(ed), tam(ta), sexo(sex), energia(ener), convivencia(conv), enfermo(enf),
-      esterilizado(ester), vacunado (vac),estatus(est),adoptant(adop),refugi(ref){};
+                                       esterilizado(ester), vacunado (vac),estatus(est),adoptant(adop),refugi(ref){
+        anadir_perro(ref);
+    };
+        //se usa esta función cada vez que se crea un perro, así se contabiliza en el atributo del
+        //objeto refugi
+
 
     //getters de clase Perro
     string get_raza();
@@ -61,9 +71,10 @@ public:
     void set_estatus(int); //aquí terminan los setters y getters
 
     //inician funciones únicas
-    void anadir_perro();//añade un voluntario al contador del refugio de voluntarios
+    void remover_perro(Refugio);//remueve un perro (unidad) al contador del refugio de perros
     void crear_adoptante();//crea un adoptante al perro
     void adoptar();//le asigna un adoptante al perro
+    void anadir_perro(Refugio);//añade un perro (unidad) al contador del refugio de perros
 
 };
 
@@ -138,7 +149,7 @@ string Perro::get_estatus() {
     string text3;
     text3 = "";
 
-    if (vacunado == 0) {
+    if (estatus == 0) {
         text3 = "Todavía no lo adoptan";
     } else {
         text3 = "Adoptado";
@@ -179,9 +190,15 @@ void Perro::set_esterilizado(int ester){
 void Perro::set_estatus(int est){
     estatus=est;
 }
-void Perro::anadir_perro(){
-    refugi.set_num_perros();
+
+void Perro::remover_perro(Refugio refu){
+    refugi.adoptar_perros();
 //ejemplo de agregación
+}
+
+void Perro::anadir_perro(Refugio refu) {
+    refu=refugi;
+    refugi.nuevo_perro();
 }
 
 void Perro::set_adoptante(Adoptante adop){
@@ -213,4 +230,13 @@ void Perro::adoptar(){
     adoptant.set_veterinario(vet);
     adoptant.cumple_criterios();
     cout<<adoptant.adoptar()<<endl;
+    if (adoptant.adoptar()=="El perro ha sido adoptado con éxito"){
+        set_estatus(1);
+        remover_perro(refugi);//se remueve un perro debido a que ya fue adoptado
+    }
+    else{
+        cout<<"El perro no pudo ser adoptado"<<endl;
+    }
 }
+
+#endif
