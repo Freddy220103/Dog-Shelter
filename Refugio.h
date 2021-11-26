@@ -1,6 +1,8 @@
 //
 // Creado por Alfredo Gómez Mendoza A01704189 el 18/11/2021.
 //
+#ifndef REFUGIO_H_
+#define REFUGIO_H_
 #include<string>
 using namespace std;
 
@@ -25,17 +27,21 @@ public:
     int get_num_volunt();
     int get_maxcap();
     int get_staff_max();
+
     //setters de voluntario
     void set_nombre(string);
     void set_num_camas(int);
-    void set_num_perros();
+    void adoptar_perros();
+    void nuevo_perro();
     void set_num_volunt();
     void set_max_cap(int);
     void set_staff_max(int);
+
     //Funciones únicas
-    string camas_necesarias();
+    int camas_necesarias();
     string perros_admitidos();
-    string staff_necesario();
+    int staff_necesario();
+    void status();
 
 };
 
@@ -63,7 +69,11 @@ void Refugio::set_nombre(string nom){
 void Refugio::set_num_camas(int camas){
     numero_camas=camas;
 }
-void Refugio::set_num_perros(){
+void Refugio::adoptar_perros(){
+    numero_perros--;
+}
+
+void Refugio::nuevo_perro(){
     numero_perros++;
 }
 void Refugio::set_num_volunt(){
@@ -76,16 +86,12 @@ void Refugio::set_staff_max(int staff) {
     staff_max = staff;
 }
 
-string Refugio::camas_necesarias(){
+int Refugio::camas_necesarias(){
     string text;
-    text="";
-    if (numero_camas>=numero_perros){
-        text="Hay suficientes camas para los perros";
-    }
-    else{
-        text="Faltan camas para los perros";
-    }
-    return text;
+    int cam_necesarias;
+    cam_necesarias=numero_camas-numero_perros;
+    cam_necesarias=cam_necesarias*-1;
+    return cam_necesarias;
 }
 
 string Refugio::perros_admitidos(){
@@ -99,14 +105,17 @@ string Refugio::perros_admitidos(){
    }
    return text;
 }
-string Refugio::staff_necesario(){
-    string text;
-    text="";
-    if (numero_voluntarios>=staff_max){
-        text="Se ha alcanzado la capacidad máxima de voluntarios";
-    }
-    else{
-        text="Aún se aceptan voluntarios";
-    }
-    return text;
+int Refugio::staff_necesario(){
+    int volun_necesarios;
+    volun_necesarios=staff_max-numero_voluntarios;
+    return volun_necesarios;
 }
+void Refugio::status(){
+    cout<<"El refugio tiene una capacidad de "<<capacidad_max<<" perros, de los cuales se encuentran "<<numero_perros
+    <<" perros viviendo en el Refugio"<<endl;
+
+    cout<<"El refugio tiene "<<numero_camas<<" camas de las cuales se requieren "<<camas_necesarias()<<" camas"
+    <<endl;
+    cout<<"El refugio requiere "<<staff_necesario()<<" voluntarios"<<endl;
+}
+#endif
