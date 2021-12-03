@@ -1,5 +1,7 @@
 # TC1033.2 Adopción de perros.
 Proyecto desarrollado durante la clase de TC1033.2. 
+Desarrollado por Alfredo Gómez Mendoza A01704189.
+Última versión creada el 02/12/21
 
 ## Contexto
 
